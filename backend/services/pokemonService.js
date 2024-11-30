@@ -1,5 +1,10 @@
 const axios = require('axios');
 
+const fetchPokemonListFromAPI = async () => {
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000');
+    return response.data.results.map((pokemon) => pokemon.name);
+};
+
 const fetchPokemonFromAPI = async (name) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
     return {
@@ -11,4 +16,4 @@ const fetchPokemonFromAPI = async (name) => {
     };
 };
 
-module.exports = { fetchPokemonFromAPI };
+module.exports = { fetchPokemonFromAPI ,fetchPokemonListFromAPI};
